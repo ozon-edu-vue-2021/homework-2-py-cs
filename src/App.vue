@@ -1,17 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header :selectedItem="selectedItem.path" />
+    <Node
+      :tree="data"
+      :path="`./${data.name}`"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Node from './components/Node.vue'
+import data from '../public/static/node_modules'
+import Header from './components/Header.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Node,
+    Header,
+  },
+  data: () => ({
+    data,
+    selectedItem: {
+      path: `./${data.name}`
+    }
+  }),
+  provide() {
+    return {
+      selectedItem: this.selectedItem
+    }
   }
 }
 </script>
