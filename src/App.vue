@@ -25,6 +25,9 @@ export default {
       path: `./${data.name}`
     }
   }),
+  mounted() {
+    document.addEventListener('keydown', (e) => e.preventDefault());
+  },
   provide() {
     return {
       selectedItem: this.selectedItem
